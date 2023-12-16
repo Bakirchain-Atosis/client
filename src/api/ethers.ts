@@ -3,7 +3,7 @@ import { Contract } from "ethers";
 import { ethers } from "ethers";
 
 export class EthersAdapter {
-  private contractAddress = "0xefb6a5690b17533df6d63731c5496375ef719599";
+  private contractAddress = "0x2af17ebe82b645a3df7f5c11342f0bba7ac11da3";
   private rpcProvider = new ethers.JsonRpcProvider(
     "https://api.avax-test.network/ext/bc/C/rpc",
     { chainId: 43113, name: "Avalanche Fuji Testnet" }
@@ -20,9 +20,28 @@ export class EthersAdapter {
   }
 
   async getOwner() {
-    const result = await this.rpcProvider.getBlockNumber();
-    console.log("Block number: " + result);
     const owner = await this.contract.getOwner();
     return owner;
+  }
+
+  async getUserPublicKey(userAddr: string) {
+    const publicKey = await this.contract.getPublicKey(userAddr);
+    return publicKey;
+  }
+
+  async createNewIdentity(storageHash: string, address: string) {
+    const providers = new ethers.BrowserProvider((window as any).ethereum);
+    const signer = await providers.getSigner(await this.getWalletAccount());
+    const administrativeSidechainContract = new ethers.Contract(
+      this.contractAddress,
+      ABI,
+      signer
+    );
+    const result = await administrativeSidechainContract.createIdentity(
+      storageHash,
+      address
+    );
+    await providers.waitForTransaction(result.hash);
+    return result;
   }
 }

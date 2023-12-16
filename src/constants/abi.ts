@@ -6,6 +6,35 @@ export const ABI = [
   },
   {
     inputs: [],
+    name: "Unauthorized",
+    type: "error",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "_identityHash",
+        type: "string",
+      },
+      {
+        internalType: "address",
+        name: "_address",
+        type: "address",
+      },
+    ],
+    name: "createIdentity",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "getOwner",
     outputs: [
       {
@@ -77,6 +106,59 @@ export const ABI = [
         name: "_keys",
         type: "string[]",
       },
+    ],
+    name: "grantAccessToStorageTransaction",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    name: "identities",
+    outputs: [
+      {
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        internalType: "string",
+        name: "identityHash",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "_storageHash",
+        type: "string",
+      },
+      {
+        internalType: "address[]",
+        name: "_permissionedAddresses",
+        type: "address[]",
+      },
+      {
+        internalType: "string[]",
+        name: "_keys",
+        type: "string[]",
+      },
       {
         internalType: "string",
         name: "_symmetricKey",
@@ -116,6 +198,49 @@ export const ABI = [
   {
     inputs: [
       {
+        internalType: "address",
+        name: "_user",
+        type: "address",
+      },
+    ],
+    name: "retrieveIdentity",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "_storageHash",
+        type: "string",
+      },
+      {
+        internalType: "address[]",
+        name: "_permissionedAddresses",
+        type: "address[]",
+      },
+    ],
+    name: "revokeAccessToStorageTransaction",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "string",
         name: "publicKey",
         type: "string",
@@ -137,14 +262,14 @@ export const ABI = [
     name: "storageTransactions",
     outputs: [
       {
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
         internalType: "string",
         name: "storageHash",
         type: "string",
-      },
-      {
-        internalType: "uint256",
-        name: "timestamp",
-        type: "uint256",
       },
     ],
     stateMutability: "view",

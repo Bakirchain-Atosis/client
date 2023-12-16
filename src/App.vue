@@ -3,7 +3,16 @@ import { RouterView } from "vue-router";
 </script>
 
 <template>
-  <RouterView />
+  <main>
+    <div class="container mx-auto py-5 flex justify-between">
+      <img src="./assets/LOGO.png" alt="" />
+      <div>
+        <button class="btn mr-3">Kamu Girişi</button>
+        <button class="btn btn-primary">Memur Girişi</button>
+      </div>
+    </div>
+    <RouterView />
+  </main>
 </template>
 
 <style scoped>

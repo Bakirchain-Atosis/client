@@ -19,13 +19,30 @@ export class ArweaveApi {
     protocol: "https",
   });
 
-  async sendFileTransaction(buffer: ArrayBuffer) {
-    const result = await this.arweave.createTransaction(
-      {
-        data: buffer,
-      },
-      this.key
-    );
-    return result.id;
+  async sendFileTransaction(buffer: string) {
+    try {
+      let transactionA = await this.arweave.createTransaction(
+        {
+          data: '<html><head><meta charset="UTF-8"><title>Hello world!</title></head><body></body></html>',
+        },
+        this.key
+      );
+      console.log(transactionA);
+
+      await this.arweave.transactions.sign(transactionA, this.key);
+
+      let uploader = await this.arweave.transactions.getUploader(transactionA);
+
+      while (!uploader.isComplete) {
+        await uploader.uploadChunk();
+        console.log(
+          `${uploader.pctComplete}% complete, ${uploader.uploadedChunks}/${uploader.totalChunks}`
+        );
+      }
+      const txid = uploader.toJSON().transaction.id;
+      return txid;
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

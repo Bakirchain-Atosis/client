@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Icon } from "@vicons/utils";
+import { FilePdf } from "@vicons/fa";
 import { curve, curves, ec } from "elliptic";
 import { EthersAdapter } from "../api/ethers";
 import { ArweaveApi } from "../api/arweave";
@@ -40,7 +42,95 @@ console.log(
 </script>
 
 <template>
-  <main>
-    <div @click="presser">hello</div>
-  </main>
+  <div>
+    <div class="bg-fixed arkaplan w-full" style="height: 500px">
+      <div class="flex justify-center items-center w-full h-full">
+        <div class="text-center w-2/4 pb-10">
+          <h1 class="text-blue-900 font-bold text-5xl mb-3">Atomik</h1>
+          <p class="text-blue-900 mb-4">
+            Lorem ipsum dolor sit amet consectetur. Id sagittis tristique ac
+            maecenas commodo. Elit fringilla cursus id commodo nulla quis
+            tempor.
+          </p>
+          <button class="btn btn-info">Daha Fazla Bilgi</button>
+        </div>
+      </div>
+      <div class="w-full absolute -bottom-20">
+        <div class="flex justify-center gap-6">
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-info rounded-full border-4 border-white flex justify-center items-center mx-auto"
+              style="background: #c7d2fe"
+            >
+              <Icon size="30">
+                <FilePdf />
+              </Icon>
+            </div>
+            <p class="break-words font-bold my-1">Lorem, ipsum dolor.</p>
+            <p class="break-words text-xs">Lorem, ipsum dolor.</p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-info rounded-full border-4 border-white flex justify-center items-center mx-auto"
+              style="background: #c7d2fe"
+            >
+              <Icon size="30">
+                <FilePdf />
+              </Icon>
+            </div>
+            <p class="break-words font-bold my-1">Lorem, ipsum dolor.</p>
+            <p class="break-words text-xs">Lorem, ipsum dolor.</p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-info rounded-full border-4 border-white flex justify-center items-center mx-auto"
+              style="background: #c7d2fe"
+            >
+              <Icon size="30">
+                <FilePdf />
+              </Icon>
+            </div>
+            <p class="break-words font-bold my-1">Lorem, ipsum dolor.</p>
+            <p class="break-words text-xs">Lorem, ipsum dolor.</p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-info rounded-full border-4 border-white flex justify-center items-center mx-auto"
+              style="background: #c7d2fe"
+            >
+              <Icon size="30">
+                <FilePdf />
+              </Icon>
+            </div>
+            <p class="break-words font-bold my-1">Lorem, ipsum dolor.</p>
+            <p class="break-words text-xs">Lorem, ipsum dolor.</p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-info rounded-full border-4 border-white flex justify-center items-center mx-auto"
+              style="background: #c7d2fe"
+            >
+              <Icon size="30">
+                <FilePdf />
+              </Icon>
+            </div>
+            <p class="break-words font-bold my-1">Lorem, ipsum dolor.</p>
+            <p class="break-words text-xs">Lorem, ipsum dolor.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="w-full h-40"
+      style="background: #c7d2fe; margin-top: 120px"
+    ></div>
+  </div>
 </template>
+
+<style scoped>
+.arkaplan {
+  background: url("../assets/bg.png") no-repeat top center fixed;
+  background-size: 100% 100%;
+  position: relative;
+}
+</style>

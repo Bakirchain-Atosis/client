@@ -44,4 +44,27 @@ export class EthersAdapter {
     await providers.waitForTransaction(result.hash);
     return result;
   }
+
+  async newStorageTransaction(
+    storageHash: string,
+    permissionedAddresses: string[],
+    keys: string[],
+    symetricKey: string
+  ) {
+    const providers = new ethers.BrowserProvider((window as any).ethereum);
+    const signer = await providers.getSigner(await this.getWalletAccount());
+    const administrativeSidechainContract = new ethers.Contract(
+      this.contractAddress,
+      ABI,
+      signer
+    );
+    const result = await administrativeSidechainContract.newStorageTransaction(
+      storageHash,
+      permissionedAddresses,
+      keys,
+      symetricKey
+    );
+    await providers.waitForTransaction(result.hash);
+    return result;
+  }
 }
